@@ -17,7 +17,22 @@ defmodule MyAppWeb.Router do
   scope "/", MyAppWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", PageController, :index
+
+    live "/users", UserLive.Index, :index
+    live "/users/new", UserLive.Index, :new
+    live "/users/:id/edit", UserLive.Index, :edit
+
+
+    live "/users/:id", UserLive.Show, :show
+    live "/users/:id/show/edit", UserLive.Show, :edit
+
+    live "/messages", MessageLive.Index, :index
+    live "/messages/new", MessageLive.Index, :new
+    live "/messages/:id/edit", MessageLive.Index, :edit
+
+    live "/messages/:id", MessageLive.Show, :show
+    live "/messages/:id/show/edit", MessageLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
@@ -34,9 +49,8 @@ defmodule MyAppWeb.Router do
     # as long as you are also using SSL (which you should anyway).
     import Phoenix.LiveDashboard.Router
 
-    scope "/dev" do
+        scope "/dev" do
       pipe_through :browser
-
       live_dashboard "/dashboard", metrics: MyAppWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
