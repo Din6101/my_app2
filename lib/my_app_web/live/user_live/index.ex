@@ -3,11 +3,12 @@ defmodule MyAppWeb.UserLive.Index do
 
   alias MyApp.Accounts
   alias MyApp.Accounts.User
+  alias MyApp.Repo
 
-  @impl true
-  def mount(_params, _session, socket) do
-    {:ok, stream(socket, :users, Accounts.list_users())}
-  end
+  #@impl true
+  #def mount(_params, _session, socket) do
+    #{:ok, stream(socket, :users, Accounts.list_users())}
+  #end
 
   @impl true
   def handle_params(params, _url, socket) do
@@ -44,4 +45,16 @@ defmodule MyAppWeb.UserLive.Index do
 
     {:noreply, stream_delete(socket, :users, user)}
   end
+
+  @impl true
+  def mount(_params, _session, socket) do
+    departments = MyApp.Departments.list_departments()
+    users = MyApp.Accounts.list_users() |> Repo.preload(:department)
+
+    {:ok,
+     socket
+     |> assign(:departments, departments)
+     |> stream(:users, users)}
+  end
+
 end

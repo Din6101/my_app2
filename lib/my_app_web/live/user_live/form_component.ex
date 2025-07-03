@@ -20,8 +20,7 @@ defmodule MyAppWeb.UserLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:age]} type="number" label="Age" />
-        <.input field={@form[:phone]} type="number" label="Phone" />
+        <.input field={@form[:appointment]} type="text" label="Appointment" />
         <:actions>
           <.button phx-disable-with="Saving...">Save User</.button>
         </:actions>

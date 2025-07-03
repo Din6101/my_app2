@@ -11,7 +11,7 @@ defmodule MyApp.AccountsFixtures do
     {:ok, user} =
       attrs
       |> Enum.into(%{
-        age: 42,
+        appointment: "some appointment",
         name: "some name"
       })
       |> MyApp.Accounts.create_user()
@@ -19,5 +19,17 @@ defmodule MyApp.AccountsFixtures do
     user
   end
 
+  @doc """
+  Generate a department.
+  """
+  def department_fixture(attrs \\ %{}) do
+    {:ok, department} =
+      attrs
+      |> Enum.into(%{
+        name: "some name"
+      })
+      |> MyApp.Accounts.create_department()
 
+    department
   end
+end

@@ -7,6 +7,9 @@ defmodule MyApp.Repo.Migrations.CreateUsers do
       add :age, :integer
       add :phone, :integer
 
+    add :department_id, references(:departments, on_delete: :nothing)
+
+
       timestamps(type: :utc_datetime)
     end
   end

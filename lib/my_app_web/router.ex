@@ -22,17 +22,21 @@ defmodule MyAppWeb.Router do
     live "/users", UserLive.Index, :index
     live "/users/new", UserLive.Index, :new
     live "/users/:id/edit", UserLive.Index, :edit
-
-
     live "/users/:id", UserLive.Show, :show
     live "/users/:id/show/edit", UserLive.Show, :edit
 
     live "/messages", MessageLive.Index, :index
     live "/messages/new", MessageLive.Index, :new
     live "/messages/:id/edit", MessageLive.Index, :edit
-
     live "/messages/:id", MessageLive.Show, :show
     live "/messages/:id/show/edit", MessageLive.Show, :edit
+
+    live "/departments", DepartmentLive.Index, :index
+    live "/departments/new", DepartmentLive.Index, :new
+    live "/departments/:id/edit", DepartmentLive.Index, :edit
+    live "/departments/:id", DepartmentLive.Show, :show
+    live "/departments/:id/show/edit", DepartmentLive.Show, :edit
+
   end
 
   # Other scopes may use custom stacks.
