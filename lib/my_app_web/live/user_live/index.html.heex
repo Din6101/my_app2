@@ -1,25 +1,57 @@
+
 <.header>
-  Listing Departments
+ <.link navigate={~p"/"}>
+      <.button>Home</.button>
+  </.link>
+
+  <.link navigate={~p"/users"}>
+      <.button>User</.button>
+  </.link>
+
+  <.link navigate={~p"/departments"}>
+      <.button>Departments</.button>
+  </.link>
+
+  <.link navigate={~p"/messages"}>
+      <.button>Messages</.button>
+  </.link>
+</.header>
+
+<.header>
+  Listing User
   <:actions>
-    <.link patch={~p"/departments/new"}>
+    <.link patch={~p"/users/new"}>
       <.button>New User</.button>
     </.link>
   </:actions>
 </.header>
 
 <.table
-  id="departments"
+  id="users"
   rows={@streams.users}
 
-  row_click={fn {_id, user} -> JS.navigate(~p"/departments/#{user}") end}
+  row_click={fn {_id, user} -> JS.navigate(~p"/users/#{user}") end}
 >
   <:col :let={{_id, user}} label="Name">{user.name}</:col>
-  <:col :let={{_id, user}} label="Appointment">{user.appointment}</:col>
+  <:col :let={{_id, user}} label="Age">{user.age}</:col>
+  <:col :let={{_id, user}} label="Phone">{user.phone}</:col>
+  <:col :let={{_id, user}} label="Appointment">
+    <%= if user.appointment do %>
+      <%= user.appointment %>
+    <% else %>
+      -
+    <% end %>
+  </:col>
+  <:col :let={{_id, user}} label="Status">{if user.appointment_status, do: user.appointment_status, else: "-"}</:col>
+  <:col :let={{_id, user}} label="Type">{if user.appointment_type, do: user.appointment_type, else: "-"}</:col>
+  <:col :let={{_id, user}} label="Duration">{if user.appointment_duration, do: "#{user.appointment_duration} min", else: "-"}</:col>
+  <:col :let={{_id, user}} label="Location">{if user.appointment_location, do: user.appointment_location, else: "-"}</:col>
+  <:col :let={{_id, user}} label="Priority">{if user.appointment_priority, do: user.appointment_priority, else: "-"}</:col>
   <:action :let={{_id, user}}>
     <div class="sr-only">
-      <.link navigate={~p"/departments/#{user}"}>Show</.link>
+      <.link navigate={~p"/users/#{user}"}>Show</.link>
     </div>
-    <.link patch={~p"/departments/#{user}/edit"}>Edit</.link>
+    <.link patch={~p"/users/#{user}/edit"}>Edit</.link>
   </:action>
   <:action :let={{id, user}}>
     <.link
@@ -31,13 +63,13 @@
   </:action>
 </.table>
 
-<.modal :if={@live_action in [:new, :edit]} id="user-modal" show on_cancel={JS.patch(~p"/departments")}>
+<.modal :if={@live_action in [:new, :edit]} id="user-modal" show on_cancel={JS.patch(~p"/users")}>
   <.live_component
     module={MyAppWeb.UserLive.FormComponent}
     id={@user.id || :new}
     title={@page_title}
     action={@live_action}
     user={@user}
-    patch={~p"/departments"}
+    patch={~p"/users"}
   />
 </.modal>

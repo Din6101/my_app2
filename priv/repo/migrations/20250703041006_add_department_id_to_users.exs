@@ -3,15 +3,7 @@ defmodule MyApp.Repo.Migrations.AddDepartmentIdToUsers do
 
   def change do
     alter table(:users) do
-      add :department_id, references(:departments, on_delete: :nothing)
+      add :department_id, :integer
     end
-    create table(:departments) do
-      add :name, :string
-
-      timestamps()
-    end
-
-
-    ##create index(:users, [:department_id])
   end
 end

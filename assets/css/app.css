@@ -3,3 +3,12 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+body {
+    cursor: url("/images/coffee.jpg"), auto;
+  }
+
+  .MyAppWeb.PageController-home {
+    cursor: url("/images/coffee.png"), auto;
+  }
+  
+  

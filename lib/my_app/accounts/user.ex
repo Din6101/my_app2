@@ -6,7 +6,13 @@ defmodule MyApp.Accounts.User do
     field :name, :string
     field :age, :integer
     field :phone, :integer
-
+    field :appointment, :utc_datetime
+    field :appointment_notes, :string
+    field :appointment_status, :string
+    field :appointment_type, :string
+    field :appointment_duration, :integer
+    field :appointment_location, :string
+    field :appointment_priority, :string
     belongs_to :department, MyApp.Accounts.Department
     timestamps(type: :utc_datetime)
   end
@@ -28,7 +34,8 @@ defmodule MyApp.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :age, :phone])
+    |> cast(attrs, [:name, :age, :phone, :appointment, :appointment_notes, :appointment_status, :appointment_type, :appointment_duration, :appointment_location, :appointment_priority, :department_id])
     |> validate_required([:name, :age, :phone])
+    |> foreign_key_constraint(:department_id)
   end
 end
