@@ -3,6 +3,8 @@ defmodule MyApp.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
+    field :username, :string
+    field :hashed_password, :string
     field :name, :string
     field :age, :integer
     field :phone, :integer
@@ -34,7 +36,19 @@ defmodule MyApp.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :age, :phone, :appointment, :appointment_notes, :appointment_status, :appointment_type, :appointment_duration, :appointment_location, :appointment_priority, :department_id])
+    |> cast(attrs, [
+      :name,
+      :age,
+      :phone,
+      :appointment,
+      :appointment_notes,
+      :appointment_status,
+      :appointment_type,
+      :appointment_duration,
+      :appointment_location,
+      :appointment_priority,
+      :department_id
+    ])
     |> validate_required([:name, :age, :phone])
     |> foreign_key_constraint(:department_id)
   end

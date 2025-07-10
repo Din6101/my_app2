@@ -7,6 +7,20 @@ defmodule MyApp.Accounts do
   alias MyApp.Repo
   alias MyApp.Accounts.User
 
+  def authenticate_user(username, password) do
+    case Repo.get_by(User, username: username) do
+      nil ->
+        {:error, :invalid_credentials}
+
+      %User{hashed_password: hash} = user ->
+        if Pbkdf2.verify_pass(password, hash) do
+          {:ok, user}
+        else
+          {:error, :invalid_credentials}
+        end
+    end
+  end
+
   @doc """
   Returns the list of users.
   """

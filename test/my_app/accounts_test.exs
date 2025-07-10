@@ -205,7 +205,9 @@ defmodule MyApp.AccountsTest do
       department = department_fixture()
       update_attrs = %{name: "some updated name"}
 
-      assert {:ok, %Department{} = department} = Accounts.update_department(department, update_attrs)
+      assert {:ok, %Department{} = department} =
+               Accounts.update_department(department, update_attrs)
+
       assert department.name == "some updated name"
     end
 

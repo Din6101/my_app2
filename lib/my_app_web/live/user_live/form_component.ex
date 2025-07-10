@@ -24,11 +24,25 @@ defmodule MyAppWeb.UserLive.FormComponent do
         <.input field={@form[:phone]} type="text" label="Phone" />
         <.input field={@form[:appointment]} type="datetime-local" label="Appointment Date & Time" />
         <.input field={@form[:appointment_notes]} type="textarea" label="Appointment Notes" />
-        <.input field={@form[:appointment_status]} type="select" label="Appointment Status" options={["scheduled", "completed", "cancelled"]} />
+        <.input
+          field={@form[:appointment_status]}
+          type="select"
+          label="Appointment Status"
+          options={["scheduled", "completed", "cancelled"]}
+        />
         <.input field={@form[:appointment_type]} type="text" label="Appointment Type" />
-        <.input field={@form[:appointment_duration]} type="number" label="Appointment Duration (minutes)" />
+        <.input
+          field={@form[:appointment_duration]}
+          type="number"
+          label="Appointment Duration (minutes)"
+        />
         <.input field={@form[:appointment_location]} type="text" label="Appointment Location" />
-        <.input field={@form[:appointment_priority]} type="select" label="Appointment Priority" options={["low", "medium", "high", "urgent"]} />
+        <.input
+          field={@form[:appointment_priority]}
+          type="select"
+          label="Appointment Priority"
+          options={["low", "medium", "high", "urgent"]}
+        />
         <:actions>
           <.button phx-disable-with="Saving...">Save User</.button>
         </:actions>

@@ -14,17 +14,29 @@
   <:item title="Phone">{@user.phone}</:item>
   <:item title="Appointment">
     <%= if @user.appointment do %>
-      <%= @user.appointment %>
+      {@user.appointment}
     <% else %>
       -
     <% end %>
   </:item>
-  <:item title="Appointment Notes">{if @user.appointment_notes, do: @user.appointment_notes, else: "-"}</:item>
-  <:item title="Appointment Status">{if @user.appointment_status, do: @user.appointment_status, else: "-"}</:item>
-  <:item title="Appointment Type">{if @user.appointment_type, do: @user.appointment_type, else: "-"}</:item>
-  <:item title="Appointment Duration (minutes)">{if @user.appointment_duration, do: @user.appointment_duration, else: "-"}</:item>
-  <:item title="Appointment Location">{if @user.appointment_location, do: @user.appointment_location, else: "-"}</:item>
-  <:item title="Appointment Priority">{if @user.appointment_priority, do: @user.appointment_priority, else: "-"}</:item>
+  <:item title="Appointment Notes">
+    {if @user.appointment_notes, do: @user.appointment_notes, else: "-"}
+  </:item>
+  <:item title="Appointment Status">
+    {if @user.appointment_status, do: @user.appointment_status, else: "-"}
+  </:item>
+  <:item title="Appointment Type">
+    {if @user.appointment_type, do: @user.appointment_type, else: "-"}
+  </:item>
+  <:item title="Appointment Duration (minutes)">
+    {if @user.appointment_duration, do: @user.appointment_duration, else: "-"}
+  </:item>
+  <:item title="Appointment Location">
+    {if @user.appointment_location, do: @user.appointment_location, else: "-"}
+  </:item>
+  <:item title="Appointment Priority">
+    {if @user.appointment_priority, do: @user.appointment_priority, else: "-"}
+  </:item>
 </.list>
 
 <.back navigate={~p"/users"}>Back to users</.back>

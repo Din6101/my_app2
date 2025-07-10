@@ -3,6 +3,8 @@ defmodule MyApp.Repo.Migrations.CreateUsers do
 
   def change do
     create table(:users) do
+      add :username, :string
+      add :hashed_password, :string
       add :name, :string
       add :age, :integer
       add :phone, :integer

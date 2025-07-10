@@ -5,10 +5,10 @@ defmodule MyAppWeb.UserLive.Index do
   alias MyApp.Accounts.User
   alias MyApp.Repo
 
-  #@impl true
-  #def mount(_params, _session, socket) do
-    #{:ok, stream(socket, :users, Accounts.list_users())}
-  #end
+  # @impl true
+  # def mount(_params, _session, socket) do
+  # {:ok, stream(socket, :users, Accounts.list_users())}
+  # end
 
   @impl true
   def handle_params(params, _url, socket) do
@@ -56,5 +56,4 @@ defmodule MyAppWeb.UserLive.Index do
      |> assign(:departments, departments)
      |> stream(:users, users)}
   end
-
 end
